@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Website</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
+:root{
+    --primary:#004aad;
+    --secondary:#f4f4f4;
+    --dark:#222;
+    --light:#fff;
+    --accent:#f9c74f;
+}
+body{background:var(--secondary);color:var(--dark);transition:0.3s;}
+.dark-mode{background:#121212;color:#ddd;}
+header{background:var(--primary);color:white;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;}
+header img{height:50px;}
+nav a{color:white;text-decoration:none;margin:0 10px;font-weight:bold;}
+.toggle-btn{background:var(--accent);border:none;padding:5px 10px;cursor:pointer;border-radius:5px;}
+.notice-board{background:var(--accent);padding:10px;overflow:hidden;}
+.notice-text{animation:scrollText 15s linear infinite;white-space:nowrap;}
+@keyframes scrollText{from{transform:translateX(100%);}to{transform:translateX(-100%);}}
+section{padding:20px;max-width:1200px;margin:auto;}
+h2{border-bottom:3px solid var(--primary);padding-bottom:5px;margin-bottom:15px;}
+.quick-links{display:flex;flex-wrap:wrap;gap:15px;}
+.quick-links a{flex:1;min-width:120px;background:var(--primary);color:white;padding:15px;text-align:center;border-radius:8px;text-decoration:none;}
+.quick-links a:hover{background:#003580;}
+.dashboard{display:flex;flex-wrap:wrap;gap:20px;}
+.card{flex:1;min-width:200px;background:var(--light);padding:15px;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+.dark-mode .card{background:#1e1e1e;}
+form{max-width:500px;margin-top:15px;}
+input,select,textarea{width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:5px;}
+input:focus,textarea:focus,select:focus{border-color:var(--primary);outline:none;}
+.error{color:red;font-size:0.9em;}
+button{background:var(--primary);color:white;border:none;padding:10px 15px;border-radius:5px;cursor:pointer;}
+button:hover{background:#003580;}
+footer{background:var(--primary);color:white;padding:15px;text-align:center;margin-top:20px;}
+</style>
+</head>
+<body>
+
+<header>
+    <img src="school-logo.png" alt="School Logo">
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#portal">Portal</a>
+        <a href="#admission">Admission</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#tour">Virtual Tour</a>
+        <a href="#gallery">Gallery</a>
+    </nav>
+    <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
+</header>
+
+<div class="notice-board">
+    <div class="notice-text">📢 Admission Open for 2025 | 🏆 Annual Sports Meet on 20th Aug | 📚 New Digital Library Launched!</div>
+</div>
+
+<section id="home">
+    <h2>Welcome to Our School</h2>
+    <p>Our school is dedicated to excellence in education, fostering creativity, and preparing students for the future.</p>
+    <div class="quick-links">
+        <a href="#admission">Admissions</a>
+        <a href="#">Results</a>
+        <a href="#gallery">Events</a>
+        <a href="#contact">Contact Us</a>
+    </div>
+</section>
+
+<section id="portal">
+    <h2>Student Login</h2>
+    <form id="loginForm">
+        <label>Username:</label>
+        <input type="text" id="username" required>
+        <div class="error" id="userError"></div>
+        
+        <label>Password:</label>
+        <input type="password" id="password" required minlength="6">
+        <div class="error" id="passError"></div>
+        
+        <button type="submit">Login</button>
+    </form>
+</section>
+
+<section id="admission">
+    <h2>Admission Form</h2>
+    <form id="admissionForm">
+        <label>Full Name:</label>
+        <input type="text" id="fullName" required>
+        <div class="error" id="nameError"></div>
+        
+        <label>Email:</label>
+        <input type="email" id="email" required>
+        <div class="error" id="emailError"></div>
+        
+        <label>Phone:</label>
+        <input type="tel" id="phone" pattern="[0-9]{10}" required>
+        <div class="error" id="phoneError"></div>
+        
+        <label>Date of Birth:</label>
+        <input type="date" id="dob" required>
+        <div class="error" id="dobError"></div>
+        
+        <label>Upload Photo:</label>
+        <input type="file" id="photo" accept="image/*" required>
+        <div class="error" id="photoError"></div>
+        
+        <button type="submit">Submit</button>
+    </form>
+</section>
+
+<section id="dashboard">
+    <h2>Performance Dashboard</h2>
+    <div class="dashboard">
+        <div class="card"><h3>Attendance</h3><p>95%</p></div>
+        <div class="card"><h3>Average Grades</h3><p>A+</p></div>
+        <div class="card"><h3>Upcoming Assignments</h3><p>Math Project - Due Aug 15</p></div>
+    </div>
+</section>
+
+<section id="tour">
+    <h2>Virtual Tour</h2>
+    <p>Take a 360° view of our campus and explore our facilities from anywhere.</p>
+    <img src="virtual-tour-placeholder.jpg" alt="Virtual Tour" style="width:100%;border-radius:8px;">
+</section>
+
+<section id="gallery">
+    <h2>Gallery</h2>
+    <p>Highlights from our events and activities.</p>
+    <img src="gallery1.jpg" alt="Gallery Image" style="width:100%;border-radius:8px;">
+</section>
+
+<footer>
+    <p>📍 123 School Road, City, Country | 📞 +91 9876543210 | ✉ info@school.com</p>
+    <p>&copy; 2025 Our School. All Rights Reserved.</p>
+</footer>
+
+<script>
+function toggleMode(){
+    document.body.classList.toggle('dark-mode');
+}
+
+// Student login validation
+document.getElementById("loginForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    let user = document.getElementById("username").value.trim();
+    let pass = document.getElementById("password").value.trim();
+    let valid = true;
+
+    document.getElementById("userError").textContent = "";
+    document.getElementById("passError").textContent = "";
+
+    if(user.length < 3){
+        document.getElementById("userError").textContent = "Username must be at least 3 characters.";
+        valid = false;
+    }
+    if(pass.length < 6){
+        document.getElementById("passError").textContent = "Password must be at least 6 characters.";
+        valid = false;
+    }
+
+    if(valid){
+        alert("Login Successful!");
+    }
+});
+
+// Admission form validation
+document.getElementById("admissionForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    let name = document.getElementById("fullName").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let dob = document.getElementById("dob").value;
+    let photo = document.getElementById("photo").files.length;
+    let valid = true;
+
+    document.getElementById("nameError").textContent = "";
+    document.getElementById("emailError").textContent = "";
+    document.getElementById("phoneError").textContent = "";
+    document.getElementById("dobError").textContent = "";
+    document.getElementById("photoError").textContent = "";
+
+    if(name.length < 3){
+        document.getElementById("nameError").textContent = "Full name must be at least 3 characters.";
+        valid = false;
+    }
+    if(!email.includes("@") || !email.includes(".")){
+        document.getElementById("emailError").textContent = "Enter a valid email.";
+        valid = false;
+    }
+    if(!/^\d{10}$/.test(phone)){
+        document.getElementById("phoneError").textContent = "Phone must be 10 digits.";
+        valid = false;
+    }
+    if(!dob){
+        document.getElementById("dobError").textContent = "Please select a date of birth.";
+        valid = false;
+    }
+    if(photo === 0){
+        document.getElementById("photoError").textContent = "Please upload a photo.";
+        valid = false;
+    }
+
+    if(valid){
+        alert("Admission Form Submitted Successfully!");
+    }
+});
+</script>
+
+</body>
+</html>
